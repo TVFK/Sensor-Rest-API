@@ -8,4 +8,3 @@ REST API using Spring to measure ambient temperature and determine the presence 
 * PostgreSQL
 =======
 * PostgreSQL
->>>>>>> origin/master
