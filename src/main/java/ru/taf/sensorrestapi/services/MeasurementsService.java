@@ -1,5 +1,6 @@
 package ru.taf.sensorrestapi.services;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.taf.sensorrestapi.models.Measurement;
 import ru.taf.sensorrestapi.repositories.MeasurementsRepository;
@@ -7,13 +8,10 @@ import ru.taf.sensorrestapi.repositories.MeasurementsRepository;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class MeasurementsService {
 
     private final MeasurementsRepository measurementsRepository;
-
-    public MeasurementsService(MeasurementsRepository measurementsRepository) {
-        this.measurementsRepository = measurementsRepository;
-    }
 
     public List<Measurement> findAll(){
         return measurementsRepository.findAll();

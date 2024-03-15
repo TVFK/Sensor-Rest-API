@@ -1,6 +1,7 @@
 package ru.taf.sensorrestapi.controllers;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,18 +21,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/measurements")
+@AllArgsConstructor
 public class MeasurementsController {
 
     private final MeasurementsService measurementsService;
     private final SensorsService sensorsService;
     private final ModelMapper modelMapper;
-
-    @Autowired
-    public MeasurementsController(MeasurementsService measurementsService, SensorsService sensorsService, ModelMapper modelMapper) {
-        this.measurementsService = measurementsService;
-        this.sensorsService = sensorsService;
-        this.modelMapper = modelMapper;
-    }
 
     @PostMapping("/add")
     public ResponseEntity<HttpStatus> addMeasurement(@RequestBody @Valid MeasurementDTO measurementDTO, BindingResult bindingResult){

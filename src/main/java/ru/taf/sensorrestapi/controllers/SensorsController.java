@@ -1,6 +1,7 @@
 package ru.taf.sensorrestapi.controllers;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +19,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/sensors")
+@AllArgsConstructor
 public class SensorsController {
 
     private final SensorsService sensorsService;
     private final SensorValidator sensorValidator;
-
-    @Autowired
-    public SensorsController(SensorsService sensorsService, SensorValidator sensorValidator) {
-        this.sensorsService = sensorsService;
-        this.sensorValidator = sensorValidator;
-    }
 
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> registration(@RequestBody @Valid SensorDTO sensorDTO, BindingResult bindingResult){
@@ -55,7 +51,6 @@ public class SensorsController {
                 e.getMessage(),
                 System.currentTimeMillis()
         );
-
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
