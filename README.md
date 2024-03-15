@@ -4,4 +4,8 @@ REST API using Spring to measure ambient temperature and determine the presence 
 * Java 21
 * Spring 6
 * Spring boot 3.2.1
+<<<<<<< HEAD
 * PostgreSQL
+=======
+* PostgreSQL
+>>>>>>> origin/master
