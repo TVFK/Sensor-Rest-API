@@ -1,5 +1,6 @@
 package ru.taf.sensorrestapi.util.validation;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -7,13 +8,10 @@ import ru.taf.sensorrestapi.dto.SensorDTO;
 import ru.taf.sensorrestapi.services.SensorsService;
 
 @Component
+@AllArgsConstructor
 public class SensorValidator implements Validator {
 
     private final SensorsService sensorsService;
-
-    public SensorValidator(SensorsService sensorsService) {
-        this.sensorsService = sensorsService;
-    }
 
     @Override
     public boolean supports(Class<?> clazz) {
