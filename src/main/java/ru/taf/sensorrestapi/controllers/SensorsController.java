@@ -1,5 +1,7 @@
 package ru.taf.sensorrestapi.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/sensors")
 @AllArgsConstructor
+@Tag(name = "sensor_methods")
 public class SensorsController {
 
     private final SensorsService sensorsService;
     private final SensorValidator sensorValidator;
 
+    @Operation(
+            summary = "registers the new sensor in the database"
+    )
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> registration(@RequestBody @Valid SensorDTO sensorDTO, BindingResult bindingResult){
 

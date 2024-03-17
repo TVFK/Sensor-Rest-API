@@ -1,5 +1,7 @@
 package ru.taf.sensorrestapi.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/measurements")
 @AllArgsConstructor
+@Tag(name = "measurement_methods")
 public class MeasurementsController {
 
     private final MeasurementsService measurementsService;
@@ -29,6 +32,9 @@ public class MeasurementsController {
     private final ModelMapper modelMapper;
 
     @PostMapping("/add")
+    @Operation(
+            summary = "adds a new measurement from the sensor"
+    )
     public ResponseEntity<HttpStatus> addMeasurement(@RequestBody @Valid MeasurementDTO measurementDTO, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             StringBuilder errorMsg = new StringBuilder();
@@ -46,11 +52,17 @@ public class MeasurementsController {
     }
 
     @GetMapping()
+    @Operation(
+            summary = "returns a list of all added measurements in the database"
+    )
     public List<MeasurementDTO> measurements(){
         return measurementsService.findAll().stream().map(this::convertToMeasurementDTO).toList();
     }
 
-    @GetMapping("/rainyDaysCount")
+    @Operation(
+            summary = "returns the number of all rainy days"
+    )
+    @GetMapping("/rainyDays")
     public int countRainyDays(){
         return measurementsService.countRainyDays();
     }
